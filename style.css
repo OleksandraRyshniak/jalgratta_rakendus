@@ -1,123 +1,187 @@
-* {
-    box-sizing: border-box;
+/* --- BODY И ОБЩИЕ СТИЛИ --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9fafb;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
-body {
-    font-family: Arial, sans-serif;
-}
-
+/* --- HEADER --- */
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 80px;
-    background-color: lightblue;
-    color: black;
+    background-color: #34495e;
+    color: white;
     display: flex;
     align-items: center;
-    padding-left: 20px;
-    text-align: center;
+    padding: 0 30px;
+    font-weight: 700;
+    font-size: 28px;
+    z-index: 1100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-
+/* --- МЕНЮ --- */
 .menu {
+    position: fixed;
+    top: 80px;
+    left: 0;
     width: 100%;
-    height: 60px;
-    background-color: #f1f1f1;
+    height: 50px;
+    background-color: #ecf0f1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 1050;
 }
 
 .menu ul {
-    list-style: none;
-    display: flex;
     margin: 0;
-    padding: 0;
+    padding: 0 30px;
+    list-style: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .menu li {
-    position: relative;
+    margin-right: 30px;
 }
 
-.menu li a {
-    display: block;
-    padding: 20px 25px;
+.menu li:last-child {
+    margin-right: 0;
+}
+
+.menu a {
     text-decoration: none;
-    color: black;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 10px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 3px solid transparent;
 }
 
-.menu li a:hover {
-    background-color: lightblue;
-}
-.menu li ul {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    background-color: #e0e0e0;
-    min-width: 200px;
+.menu a:hover,
+.menu a.active {
+    color: #2980b9;
+    border-bottom: 3px solid #2980b9;
 }
 
-.menu li:hover > ul {
-    display: block;
-}
-
-.menu li ul li a {
-    padding: 15px 20px;
-}
-
+/* --- MAIN --- */
 main {
-    padding: 20px;
+    margin-top: 140px; /* header + меню */
+    padding: 20px 30px 60px 30px;
+    background-color: #f9fafb;
+    min-height: calc(100vh - 180px); /* чтобы footer не перекрывал */
 }
 
-.flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+/* --- ЗАГОЛОВКИ --- */
+h2 {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 28px;
 }
 
-.flex-container > div {
-    flex: 1;
-    min-width: 250px;
-    border: 2px solid black;
-    padding: 15px;
-    border-radius: 10px;
+/* --- ТАБЛИЦА --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border-radius: 6px;
+    overflow: hidden;
 }
 
+table th, table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+table th {
+    background-color: #2980b9;
+    color: white;
+    font-weight: 600;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #d6eaf8;
+}
+
+/* --- Ссылки в таблице --- */
+table a {
+    text-decoration: none;
+    padding: 6px 12px;
+    margin-right: 5px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+table a[href*="korras_id"] {
+    background-color: #27ae60;
+    color: white;
+}
+
+table a[href*="korras_id"]:hover {
+    background-color: #1e8449;
+}
+
+table a[href*="vigane_id"] {
+    background-color: #e74c3c;
+    color: white;
+}
+
+table a[href*="vigane_id"]:hover {
+    background-color: #c0392b;
+}
+
+/* --- FOOTER --- */
 footer {
+    background-color: #34495e;
+    color: white;
+    text-align: center;
+    padding: 15px 30px;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 8px;
-    z-index: 1000;
+    font-size: 14px;
+    font-weight: 400;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+    z-index: 1100;
 }
 
-#but1,
-#button_1,
-input[type="submit"] {
-    width: 200px;
-    height: 30px;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: white;
-    cursor: pointer;
+/* --- АДАПТИВ --- */
+@media screen and (max-width: 600px) {
+    .menu ul {
+        flex-direction: column;
+        padding: 0 15px;
+        height: auto;
+    }
+    .menu li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    main {
+        margin-top: 150px;
+        padding: 20px 15px 80px 15px;
+    }
+    table th, table td {
+        font-size: 14px;
+        padding: 10px;
+    }
+    table a {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
 }
-
-#but1:hover,
-#button_1:hover,
-input[type="submit"]:hover {
-    background-color: lightblue;
-}
-
-img {
-    width: 200px;
-    max-width: 100%;
-}
-
-#d1,
-#d2 {
-    display: inline-block;
-}
-
-

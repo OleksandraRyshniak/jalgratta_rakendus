@@ -14,9 +14,15 @@ $kask->execute();
 <html>
 <head>
     <title>Teooriaeksam</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<?php
+include("header.php");
+include("nav_menu.php");
+?>
+<main>
+    <h2>Teooria eksam</h2>
 <table>
     <?php
     while($kask->fetch()){
@@ -35,5 +41,10 @@ $kask->execute();
     }
     ?>
 </table>
+</main>
+<?php
+//jalus
+include("footer.php");
+?>
 </body>
 </html>

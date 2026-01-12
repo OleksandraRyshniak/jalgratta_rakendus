@@ -24,9 +24,14 @@ function asenda($nr){
 <html>
 <head>
     <title>Lõpetamine</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Lõpetamine</h1>
+<?php
+include("header.php");
+include("nav_menu.php");
+?><main>
+<h2>Lõpetamine</h2>
 <table>
     <tr>
         <th>Eesnimi</th>
@@ -59,6 +64,10 @@ function asenda($nr){
  ";
     }
     ?>
-</table>
+</table></main>
+<?php
+//jalus
+include("footer.php");
+?>
 </body>
 </html>

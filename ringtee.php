@@ -13,16 +13,21 @@ if(!empty($_REQUEST["vigane_id"])){
     $kask->bind_param("i", $_REQUEST["vigane_id"]);
     $kask->execute();
 }
-$kask=$connect->prepare("SELECT id, eesnimi, perekonnanimi   FROM jalgrattaeksam WHERE teooriatulemus>=9 AND ringtee=-1");  $kask->bind_result($id, $eesnimi, $perekonnanimi);
+$kask=$connect->prepare("SELECT id, eesnimi, perekonnanimi   FROM jalgrattaeksam WHERE teooriatulemus>=10 AND ringtee=-1");  $kask->bind_result($id, $eesnimi, $perekonnanimi);
 $kask->execute();
 ?>
 <!doctype html>
 <html>
 <head>
     <title>Ringtee</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>Ringtee</h1>
+<?php
+include("header.php");
+include("nav_menu.php");
+?><main>
+<h2>Ringtee</h2>
 <table>
     <?php
     while($kask->fetch()){
@@ -38,6 +43,10 @@ $kask->execute();
  ";
     }
     ?>
-</table>
+</table></main>
+<?php
+//jalus
+include("footer.php");
+?>
 </body>
 </html>

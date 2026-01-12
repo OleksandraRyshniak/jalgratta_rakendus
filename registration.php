@@ -7,7 +7,6 @@ if(isSet($_REQUEST["sisestusnupp"])){
     $kask->bind_param("ss", $_REQUEST["eesnimi"], $_REQUEST["perekonnanimi"]);
     $kask->execute();
     $connect->close();
-    header("Location: $_SERVER[PHP_SELF]?lisatudeesnimi=$_REQUEST[eesnimi]"); exit();
 }
 ?>
 <!doctype html>
@@ -20,13 +19,9 @@ if(isSet($_REQUEST["sisestusnupp"])){
 <?php
 include("header.php");
 include("nav_menu.php");
-?>
+?><main>
 <h2>Registreerimine</h2>
-<?php
-if(isSet($_REQUEST["lisatudeesnimi"])){
-   echo "Lisati $_REQUEST[lisatudeesnimi]";
-}
-?>
+
 <form action="?">
     <dl>
         <dt>Eesnimi:</dt>
@@ -39,6 +34,7 @@ if(isSet($_REQUEST["lisatudeesnimi"])){
         <br>
         <dt><input type="submit" name="sisestusnupp" value="sisesta" /></dt>  </dl>
 </form>
+</main>
 <?php
 //jalus
 include("footer.php");

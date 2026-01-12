@@ -13,12 +13,20 @@ $kask=$connect->prepare(
 $kask->bind_result($id, $eesnimi, $perekonnanimi, $teooriatulemus,   $slaalom, $ringtee, $t2nav, $luba);
 $kask->execute();
 
+
+if (isset($_REQUEST["kustutusid"])) {
+    $paring = $connect->prepare("DELETE FROM jalgrattaeksam WHERE id=?");
+    $paring->bind_param("i", $_REQUEST["kustutusid"]);
+    $paring->execute();
+    header("Location: " . $_SERVER["PHP_SELF"]);
+}
 function asenda($nr){
     if($nr==-1){return ".";} //tegemata
     if($nr== 1){return "korras";}
     if($nr== 2){return "ebaõnnestunud";}
     return "Tundmatu number";
 }
+
 ?>
 <!doctype html>
 <html>
@@ -41,6 +49,7 @@ include("nav_menu.php");
         <th>Ringtee</th>
         <th>Tänavasõit</th>
         <th>Lubade väljastus</th>
+        <th>Kustuta</th>
     </tr>
     <?php
     while($kask->fetch()){
@@ -59,8 +68,9 @@ include("nav_menu.php");
  <td>$asendatud_slaalom</td> 
  <td>$asendatud_ringtee</td> 
  <td>$asendatud_t2nav</td> 
- <td>$loalahter</td> 
- </tr> 
+ <td>$loalahter</td> ";
+echo "<td><a href='?kustutusid=$id'>Kustuta</a></td>";
+ "</tr> 
  ";
     }
     ?>

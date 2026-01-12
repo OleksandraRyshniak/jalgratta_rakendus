@@ -16,6 +16,7 @@ $kask->execute();
     <title>Teooriaeksam</title>
 </head>
 <body>
+
 <table>
     <?php
     while($kask->fetch()){

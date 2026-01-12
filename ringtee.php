@@ -8,7 +8,7 @@ if(!empty($_REQUEST["korras_id"])){
     $kask->execute();
 }
 if(!empty($_REQUEST["vigane_id"])){
-    $kask=$connect>prepare(
+    $kask=$connect->prepare(
         "UPDATE jalgrattaeksam SET ringtee=2 WHERE id=?");
     $kask->bind_param("i", $_REQUEST["vigane_id"]);
     $kask->execute();

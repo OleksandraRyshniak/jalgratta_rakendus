@@ -1,6 +1,5 @@
 <?php
-require_once("config.php");
-global $connect;
+require("funktsioonid.php");
 if (!empty($_POST["sisestusnupp"])) {
     if (isset($_POST["eesnimi"])) {
         $eesnimi = trim($_POST["eesnimi"]);
@@ -19,10 +18,7 @@ if (!empty($_POST["sisestusnupp"])) {
     } elseif ($perekonnanimi === '' || is_numeric($perekonnanimi)) {
         echo "Sisesta oma perekonnanimi!";
     } else {
-        $stmt = $connect->prepare("INSERT INTO jalgrattaeksam (eesnimi, perekonnanimi) VALUES (?, ?)");
-        $stmt->bind_param("ss", $eesnimi, $perekonnanimi);
-        $stmt->execute();
-        $connect->close();
+        lisaKasutaja($eesnimi, $perekonnanimi);
     }
 }
 ?>
@@ -39,7 +35,7 @@ include("nav_menu.php");
 ?><main>
 <h2>Registreerimine</h2>
 
-<form action="?">
+<form action="?" method="post">
     <dl>
         <dt>Eesnimi:</dt>
         <br>
@@ -47,7 +43,7 @@ include("nav_menu.php");
         <br>
         <dt>Perekonnanimi:</dt>
         <br>
-        <dd><input type="text" name="perekonnanimi" /></dd>
+        <dd><input type="text" name="perekonnanimi" id="perekonnanimi"/></dd>
         <br>
         <dt><input type="submit" name="sisestusnupp" value="sisesta" /></dt>  </dl>
 </form>

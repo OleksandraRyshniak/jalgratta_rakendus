@@ -6,20 +6,21 @@ if(!empty($_REQUEST["vormistamine_id"])){
         "UPDATE jalgrattaeksam SET luba=1 WHERE id=?");
     $kask->bind_param("i", $_REQUEST["vormistamine_id"]);
     $kask->execute();
+    $kask->close();
 }
+if (isset($_REQUEST["kustutusid"])) {
+    $paring = $connect->prepare("DELETE FROM jalgrattaeksam WHERE id=?");
+    $paring->bind_param("i", $_REQUEST["kustutusid"]);
+    $paring->execute();
+    $paring->close();
+    header("Location: " . $_SERVER["PHP_SELF"]);
+}
+
 $kask=$connect->prepare(
     "SELECT id, eesnimi, perekonnanimi, teooriatulemus,  
  slaalom, ringtee, t2nav, luba FROM jalgrattaeksam;");
 $kask->bind_result($id, $eesnimi, $perekonnanimi, $teooriatulemus,   $slaalom, $ringtee, $t2nav, $luba);
 $kask->execute();
-
-
-if (isset($_REQUEST["kustutusid"])) {
-    $paring = $connect->prepare("DELETE FROM jalgrattaeksam WHERE id=?");
-    $paring->bind_param("i", $_REQUEST["kustutusid"]);
-    $paring->execute();
-    header("Location: " . $_SERVER["PHP_SELF"]);
-}
 function asenda($nr){
     if($nr==-1){return ".";} //tegemata
     if($nr== 1){return "korras";}

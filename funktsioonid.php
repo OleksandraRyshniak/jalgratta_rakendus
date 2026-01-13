@@ -61,3 +61,22 @@ function slaalom_vigane($id)
     $kask->execute();
     $kask->close();
 }
+
+function ringtee_korras($id)
+{
+    global $connect;
+    $kask=$connect->prepare(
+        "UPDATE jalgrattaeksam SET ringtee=1 WHERE id=?");
+    $kask->bind_param("i", $id);
+    $kask->execute();
+    $kask->close();
+}
+function ringtee_vigane($id)
+{
+    global $connect;
+    $kask=$connect->prepare(
+        "UPDATE jalgrattaeksam SET ringtee=2 WHERE id=?");
+    $kask->bind_param("i", $id);
+    $kask->execute();
+    $kask->close();
+}

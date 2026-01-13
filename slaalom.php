@@ -1,17 +1,16 @@
 <?php
-require_once("config.php");
+require("funktsioonid.php");
+require("config.php");
 global $connect;
-if(!empty($_REQUEST["korras_id"])){
-    $kask=$connect->prepare(
-        "UPDATE jalgrattaeksam SET slaalom=1 WHERE id=?");
-    $kask->bind_param("i", $_REQUEST["korras_id"]);
-    $kask->execute();
+if(!empty($_REQUEST['korras_id'])){
+    slaalom_korras($_REQUEST['korras_id']);
+    header("Location:". $_SERVER['PHP_SELF']);
+    exit;
 }
 if(!empty($_REQUEST["vigane_id"])){
-    $kask=$connect->prepare(
-        "UPDATE jalgrattaeksam SET slaalom=2 WHERE id=?");
-    $kask->bind_param("i", $_REQUEST["vigane_id"]);
-    $kask->execute();
+    slaalom_vigane($_REQUEST['vigane_id']);
+    header("Location:". $_SERVER['PHP_SELF']);
+    exit;
 }
 $kask=$connect->prepare("SELECT id, eesnimi, perekonnanimi   FROM jalgrattaeksam WHERE teooriatulemus>=10 AND slaalom=-1");  $kask->bind_result($id, $eesnimi, $perekonnanimi);
 $kask->execute();

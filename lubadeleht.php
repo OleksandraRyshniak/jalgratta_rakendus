@@ -1,6 +1,6 @@
 <?php
 global $connect;
-require_once("config.php");
+require("config.php");
 if(!empty($_REQUEST["vormistamine_id"])){
     $kask=$connect->prepare(
         "UPDATE jalgrattaeksam SET luba=1 WHERE id=?");

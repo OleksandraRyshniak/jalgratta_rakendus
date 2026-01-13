@@ -1,5 +1,5 @@
 <?php
-require_once("config.php");
+require("config.php");
 global $connect;
 if(!empty($_REQUEST["korras_id"])){
     $kask=$connect->prepare(

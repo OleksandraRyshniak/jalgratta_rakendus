@@ -80,3 +80,25 @@ function ringtee_vigane($id)
     $kask->execute();
     $kask->close();
 }
+
+
+function tanav_korras($id)
+{
+    global $connect;
+    $kask=$connect->prepare(
+        "UPDATE jalgrattaeksam SET t2nav=1 WHERE id=?");
+    $kask->bind_param("i", $id);
+    $kask->execute();
+    $kask->close();
+}
+
+function tanav_vigane($id)
+{
+    global $connect;
+    $kask=$connect->prepare(
+        "UPDATE jalgrattaeksam SET t2nav=2 WHERE id=?");
+    $kask->bind_param("i",$id);
+    $kask->execute();
+    $kask->close();
+}
+

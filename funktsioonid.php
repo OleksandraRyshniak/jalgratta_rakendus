@@ -42,4 +42,22 @@ function naitaTabel()
     $paring->close();
 }
 
+function slaalom_korras($id)
+{
+    global $connect;
+    $kask=$connect->prepare(
+        "UPDATE jalgrattaeksam SET slaalom=1 WHERE id=?");
+    $kask->bind_param("i", $id);
+    $kask->execute();
+    $kask->close();
+}
 
+function slaalom_vigane($id)
+{
+    global $connect;
+    $kask=$connect->prepare(
+        "UPDATE jalgrattaeksam SET slaalom=2 WHERE id=?");
+    $kask->bind_param("i", $id);
+    $kask->execute();
+    $kask->close();
+}

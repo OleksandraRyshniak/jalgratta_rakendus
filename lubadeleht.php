@@ -1,21 +1,17 @@
 <?php
-global $connect;
+require("funktsioonid.php");
 require("config.php");
-if(!empty($_REQUEST["vormistamine_id"])){
-    $kask=$connect->prepare(
-        "UPDATE jalgrattaeksam SET luba=1 WHERE id=?");
-    $kask->bind_param("i", $_REQUEST["vormistamine_id"]);
-    $kask->execute();
-    $kask->close();
+global $connect;
+if(!empty($_REQUEST['vormistamine_id'])){
+    vormistamine($_REQUEST['vormistamine_id']);
+    header("Location:". $_SERVER['PHP_SELF']);
+    exit;
 }
-if (isset($_REQUEST["kustutusid"])) {
-    $paring = $connect->prepare("DELETE FROM jalgrattaeksam WHERE id=?");
-    $paring->bind_param("i", $_REQUEST["kustutusid"]);
-    $paring->execute();
-    $paring->close();
-    header("Location: " . $_SERVER["PHP_SELF"]);
+if(!empty($_REQUEST["kustutusid"])){
+    kustuta($_REQUEST['kustutusid']);
+    header("Location:". $_SERVER['PHP_SELF']);
+    exit;
 }
-
 $kask=$connect->prepare(
     "SELECT id, eesnimi, perekonnanimi, teooriatulemus,  
  slaalom, ringtee, t2nav, luba FROM jalgrattaeksam;");

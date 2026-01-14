@@ -102,3 +102,21 @@ function tanav_vigane($id)
     $kask->close();
 }
 
+function vormistamine($id)
+{
+    global $connect;
+    $kask=$connect->prepare(
+        "UPDATE jalgrattaeksam SET luba=1 WHERE id=?");
+    $kask->bind_param("i", $id);
+    $kask->execute();
+    $kask->close();
+}
+
+function kustuta($id)
+{
+    global $connect;
+    $paring = $connect->prepare("DELETE FROM jalgrattaeksam WHERE id=?");
+    $paring->bind_param("i", $id);
+    $paring->execute();
+    $paring->close();
+}
